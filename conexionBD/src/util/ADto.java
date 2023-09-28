@@ -3,6 +3,7 @@ package util;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import dtos.LibroDto;
 /**
@@ -43,4 +44,5 @@ public class ADto {
 		return listaLibros;
 		
 	}
+	
 }
