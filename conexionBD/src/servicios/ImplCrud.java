@@ -31,8 +31,7 @@ public class ImplCrud implements InterfazCrud {
 			// Se abre una declaración
 			declaracionSQL = conexionGenerada.createStatement();
 			// Se define la consulta de la declaración y se ejecuta
-			resultadoConsulta = declaracionSQL
-					.executeQuery("SELECT * FROM gbp_almacen.gbp_alm_cat_libros ORDER BY id_libro ASC");
+			resultadoConsulta = declaracionSQL.executeQuery("SELECT * FROM gbp_almacen.gbp_alm_cat_libros ORDER BY id_libro ASC");
 
 			// Llamada a la conversión a dtoAlumno
 			listaLibros = adto.resultsALibrosDto(resultadoConsulta);

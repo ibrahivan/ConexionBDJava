@@ -38,4 +38,19 @@ public class metodosExternos {
 				System.out.println("\n\t\t0. Cerrar app");
 
 			}
+			
+			public int CapturaEntero(String mensaje, int min, int max) {
+				Scanner sc = new Scanner(System.in);
+
+				System.out.print(mensaje + " (" + min + ".." + max + "): ");
+				int opcion = sc.nextInt();
+
+				while (opcion < min || opcion > max) {
+					System.out.println("\tNo has introducido una opción válida.");
+					System.out.print("\tVuelve a introducir una opción" + " (" + min + ".." + max + "): ");
+					opcion = sc.nextInt();
+				}
+				return opcion;
+
+			}
 }

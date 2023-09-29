@@ -28,6 +28,7 @@ public class Inicio {
 		InterfazCrud crud = new ImplCrud();
 		metodosExternos met = new metodosExternos();
 		ArrayList<LibroDto> listaLibros = new ArrayList<>();
+		metodosExternos util = new metodosExternos();
 
 		Scanner sc = new Scanner(System.in);
 		int opcion;
@@ -49,10 +50,23 @@ public class Inicio {
 					Connection conexion = cpi.generaConexion();
 
 					if (conexion != null) {
+						System.out.println("---MOSTRAR LIBROS---");
 						listaLibros = crud.seleccionaTodosLibros(conexion);
 						conexion.close();
-						for (int i = 0; i < listaLibros.size(); i++) {
-							System.out.println("\n" + listaLibros.get(i).toString());
+						int n = util.CapturaEntero("Desea ver todos los libro (Opcion 1) o ver un libro (Opcion 2)", 1,
+								2);
+						if (n == 1) {
+							for (int i = 0; i < listaLibros.size(); i++)
+								System.out.println("\n" + listaLibros.get(i).toString());
+						} else {
+							System.out.println("\nId libro disponible:");
+							for (int i = 0; i < listaLibros.size(); i++)
+								System.out.println(listaLibros.get(i).getIdLibro());
+							System.out.print("\n¿Qué libro desea ver? Seleccione por id: ");
+							int id = sc.nextInt();
+							for (int i = 0; i < listaLibros.size(); i++)
+								System.out.println("\nLibro=>" + listaLibros.get(id).toString());
+
 						}
 					}
 
@@ -67,12 +81,11 @@ public class Inicio {
 					if (conexion != null) {
 						System.out.println("---INSERTAR LIBROS---");
 						listaLibros = crud.seleccionaTodosLibros(conexion);
-						for (int i = 0; i < listaLibros.size(); i++) 
+						for (int i = 0; i < listaLibros.size(); i++)
 							System.out.println("\n" + listaLibros.get(i).toString());
 						crud.opcIDU(conexion, 1);
 						conexion.close();
-						}
-					
+					}
 
 				} catch (Exception e) {
 					System.out.println("[ERROR-Main] Se ha producido un error al ejecutar la aplicación: " + e);
@@ -85,12 +98,11 @@ public class Inicio {
 					if (conexion != null) {
 						System.out.println("---BORRAR LIBROS---");
 						listaLibros = crud.seleccionaTodosLibros(conexion);
-						for (int i = 0; i < listaLibros.size(); i++) 
+						for (int i = 0; i < listaLibros.size(); i++)
 							System.out.println("\n" + listaLibros.get(i).toString());
 						crud.opcIDU(conexion, 2);
 						conexion.close();
-						}
-					
+					}
 
 				} catch (Exception e) {
 					System.out.println("[ERROR-Main] Se ha producido un error al ejecutar la aplicación: " + e);
@@ -103,13 +115,12 @@ public class Inicio {
 					if (conexion != null) {
 						System.out.println("---ACTUALIZA LIBROS---");
 						listaLibros = crud.seleccionaTodosLibros(conexion);
-						for (int i = 0; i < listaLibros.size(); i++) 
+						for (int i = 0; i < listaLibros.size(); i++)
 							System.out.println("\n" + listaLibros.get(i).toString());
 						crud.opcIDU(conexion, 3);
 						conexion.close();
-						
-						}
-					
+
+					}
 
 				} catch (Exception e) {
 					System.out.println("[ERROR-Main] Se ha producido un error al ejecutar la aplicación: " + e);
@@ -129,4 +140,3 @@ public class Inicio {
 	}
 
 }
-
