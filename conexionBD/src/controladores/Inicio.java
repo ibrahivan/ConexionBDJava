@@ -35,7 +35,7 @@ public class Inicio {
 			met.mostrarMenu(); // mostramos menu
 			opcion = sc.nextLine().charAt(0) - '0';
 			// control de errores
-			while (opcion < 0 || opcion > 3) {
+			while (opcion < 0 || opcion > 4) {
 
 				System.out.println("\n\t\t\t**ERROR**");
 				System.out.print("\t\tIntroduce una opcion: ");
@@ -50,6 +50,7 @@ public class Inicio {
 
 					if (conexion != null) {
 						listaLibros = crud.seleccionaTodosLibros(conexion);
+						conexion.close();
 						for (int i = 0; i < listaLibros.size(); i++) {
 							System.out.println("\n" + listaLibros.get(i).toString());
 						}
@@ -65,7 +66,11 @@ public class Inicio {
 
 					if (conexion != null) {
 						System.out.println("---INSERTAR LIBROS---");
-						crud.insertaLibros(conexion);
+						listaLibros = crud.seleccionaTodosLibros(conexion);
+						for (int i = 0; i < listaLibros.size(); i++) 
+							System.out.println("\n" + listaLibros.get(i).toString());
+						crud.opcIDU(conexion, 1);
+						conexion.close();
 						}
 					
 
@@ -78,11 +83,14 @@ public class Inicio {
 					Connection conexion = cpi.generaConexion();
 
 					if (conexion != null) {
+						System.out.println("---BORRAR LIBROS---");
 						listaLibros = crud.seleccionaTodosLibros(conexion);
-						for (int i = 0; i < listaLibros.size(); i++) {
+						for (int i = 0; i < listaLibros.size(); i++) 
 							System.out.println("\n" + listaLibros.get(i).toString());
+						crud.opcIDU(conexion, 2);
+						conexion.close();
 						}
-					}
+					
 
 				} catch (Exception e) {
 					System.out.println("[ERROR-Main] Se ha producido un error al ejecutar la aplicación: " + e);
@@ -93,9 +101,13 @@ public class Inicio {
 					Connection conexion = cpi.generaConexion();
 
 					if (conexion != null) {
+						System.out.println("---ACTUALIZA LIBROS---");
+						listaLibros = crud.seleccionaTodosLibros(conexion);
+						for (int i = 0; i < listaLibros.size(); i++) 
+							System.out.println("\n" + listaLibros.get(i).toString());
+						crud.opcIDU(conexion, 3);
+						conexion.close();
 						
-						System.out.println("---BORRAR LIBROS---");
-						crud.borraLibros(conexion,listaLibros);
 						}
 					
 

@@ -25,23 +25,9 @@ public interface InterfazCrud {
 	 * @param conexionGenerada
 	 * @return lista de libros
 	 */
-	public void insertaLibros(Connection conexionGenerada);
+	public void opcIDU(Connection conexionGenerada, Integer opc);
 	
-	/**
-	 * Método que borra libros del catálogo de libros
-	 * ivp
-	 * @param conexionGenerada
-	 * @return lista de libros
-	 */
-	public ArrayList<LibroDto> borraLibros(Connection conexionGenerada, ArrayList<LibroDto>l);
 	
-	/**
-	 * Método que realiza actualizaciones sobre el catálogo de libros
-	 * ivp
-	 * @param conexionGenerada
-	 * @return lista de libros
-	 */
-	public ArrayList<LibroDto> actualizaLibros(Connection conexionGenerada);
 
 	
 	
