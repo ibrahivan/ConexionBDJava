@@ -26,20 +26,20 @@ public class Inicio {
 
 		InterfazConexion cpi = new ImplConexion();
 		InterfazCrud crud = new ImplCrud();
-		metodosExternos met = new metodosExternos();
+		metodosExternos util = new metodosExternos();
 		ArrayList<LibroDto> listaLibros = new ArrayList<>();
 
 		Scanner sc = new Scanner(System.in);
 		int opcion;
 		do {
-			met.mostrarMenu(); // mostramos menu
-			opcion = sc.nextLine().charAt(0) - '0';
+			util.mostrarMenu(); // mostramos menu
+			opcion = util.CapturaEntero("\n\tIntroduce una opcion", 0, 4);
 			// control de errores
 			while (opcion < 0 || opcion > 4) {
 
 				System.out.println("\n\t\t\t**ERROR**");
-				System.out.print("\t\tIntroduce una opcion: ");
-				opcion = sc.nextLine().charAt(0) - '0';
+				opcion = util.CapturaEntero("Introduce una opcion", 0, 4);
+				
 			}
 			System.out.flush();
 			switch (opcion) {
@@ -50,10 +50,27 @@ public class Inicio {
 
 					if (conexion != null) {
 						listaLibros = crud.seleccionaTodosLibros(conexion);
-						conexion.close();
-						for (int i = 0; i < listaLibros.size(); i++) {
-							System.out.println("\n" + listaLibros.get(i).toString());
+						
+						int opc = util.CapturaEntero("Desea ver todos los libros (Pulsa 1) o ver un solo libro (Pulsa 2)", 1, 2);
+						if (opc == 1) {
+							for (int i = 0; i < listaLibros.size(); i++) {
+								System.out.println("\n" + listaLibros.get(i).toString());
+
+							}
+						} else {
+							System.out.println("Libros disponibles según su id:");
+							for (int i = 0; i < listaLibros.size(); i++)
+								System.out.println("Id Libro: " + listaLibros.get(i).getIdLibro());
+
+							System.out.println("Elige el libro que quieres ver por su id: ");
+							int id = sc.nextInt();
+							for (int i = 0; i < listaLibros.size(); i++) {
+								if (listaLibros.get(i).getIdLibro() == id)
+									System.out.println("\n" + listaLibros.get(i).toString());
+								
+							}
 						}
+						conexion.close();
 					}
 
 				} catch (Exception e) {
@@ -67,12 +84,11 @@ public class Inicio {
 					if (conexion != null) {
 						System.out.println("---INSERTAR LIBROS---");
 						listaLibros = crud.seleccionaTodosLibros(conexion);
-						for (int i = 0; i < listaLibros.size(); i++) 
+						for (int i = 0; i < listaLibros.size(); i++)
 							System.out.println("\n" + listaLibros.get(i).toString());
 						crud.opcIDU(conexion, 1);
 						conexion.close();
-						}
-					
+					}
 
 				} catch (Exception e) {
 					System.out.println("[ERROR-Main] Se ha producido un error al ejecutar la aplicación: " + e);
@@ -85,12 +101,11 @@ public class Inicio {
 					if (conexion != null) {
 						System.out.println("---BORRAR LIBROS---");
 						listaLibros = crud.seleccionaTodosLibros(conexion);
-						for (int i = 0; i < listaLibros.size(); i++) 
+						for (int i = 0; i < listaLibros.size(); i++)
 							System.out.println("\n" + listaLibros.get(i).toString());
 						crud.opcIDU(conexion, 2);
 						conexion.close();
-						}
-					
+					}
 
 				} catch (Exception e) {
 					System.out.println("[ERROR-Main] Se ha producido un error al ejecutar la aplicación: " + e);
@@ -103,13 +118,12 @@ public class Inicio {
 					if (conexion != null) {
 						System.out.println("---ACTUALIZA LIBROS---");
 						listaLibros = crud.seleccionaTodosLibros(conexion);
-						for (int i = 0; i < listaLibros.size(); i++) 
+						for (int i = 0; i < listaLibros.size(); i++)
 							System.out.println("\n" + listaLibros.get(i).toString());
 						crud.opcIDU(conexion, 3);
 						conexion.close();
-						
-						}
-					
+
+					}
 
 				} catch (Exception e) {
 					System.out.println("[ERROR-Main] Se ha producido un error al ejecutar la aplicación: " + e);
@@ -129,4 +143,3 @@ public class Inicio {
 	}
 
 }
-
