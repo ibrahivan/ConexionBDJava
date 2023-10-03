@@ -64,8 +64,10 @@ public class Inicio {
 								System.out.println(listaLibros.get(i).getIdLibro());
 							System.out.print("\n¿Qué libro desea ver? Seleccione por id: ");
 							int id = sc.nextInt();
-							for (int i = 0; i < listaLibros.size(); i++)
-								System.out.println("\nLibro=>" + listaLibros.get(id).toString());
+							for (int i = 0; i < listaLibros.size(); i++) {
+								if(listaLibros.get(i).getIdLibro()==id)
+									System.out.println("\n" + listaLibros.get(i).toString());
+							}
 
 						}
 					}
