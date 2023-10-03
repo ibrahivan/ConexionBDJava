@@ -67,7 +67,7 @@ public class ImplConexion implements InterfazConexion {
 		Properties propiedadesConexion = new Properties();
 		try {
 			//propiedadesConexionPostgresql.load(getClass().getResourceAsStream("conexion_postgresql.properties"));
-			propiedadesConexion.load(new FileInputStream(new File("C:\\Users\\Puesto12\\source\\repos\\ConexionBDJava\\conexionBD\\src\\util\\datos.properties")));
+			propiedadesConexion.load(new FileInputStream(new File("C:\\Users\\ivan-\\source\\repos\\ConexionBDJava\\conexionBD\\src\\util\\datos.properties")));
 			user = propiedadesConexion.getProperty("user");
 			pass = propiedadesConexion.getProperty("pass");
 			port = propiedadesConexion.getProperty("port");
